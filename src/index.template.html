@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    <%= productName %>
+  </title>
+
+  <meta charset="utf-8">
+  <meta name="description" content="<%= productDescription %>">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta name="viewport"
+    content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width<% if (ctx.mode.cordova || ctx.mode.capacitor) { %>, viewport-fit=cover<% } %>">
+  <link rel="icon" type="image/ico" href="<% productHomePage %>/assets/icons/favicon.ico">
+  <script src="https://wechat.upyun.hh0704.com/libs/jweixin-1.6.0.js"></script>
+  <script src="https://wechat.upyun.hh0704.com/libs/wxshare.min.js"></script>
+</head>
+
+<body>
+  <script>
+    // TODO: 初始化配置选项
+    let e = new WxShare({
+        title: "<%= productName %>",
+        desc: "<%= productDescription %>",
+        cover: '<% productHomePage %>/icons/logo.jpg',
+        shareLink: "<% productHomePage %>/dist/spa/index.html",
+        uri: window.location.href,
+        debug: false,
+        js_api_list: ["updateTimelineShareData", "updateAppMessageShareData"]
+    })
+    // TODO: 初始化配置按钮
+    e.init()
+</script>
+
+  <div id="q-app"></div>
+</body>
+
+</html>

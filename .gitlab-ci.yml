@@ -1,0 +1,12 @@
+stages:
+  - deploy
+my_deploy:
+  image: alyun_oss_hh:v1
+  stage: deploy
+  script:
+    - /ossutil rm oss://wechat-aliyun/${CI_PROJECT_NAME}/dist -r -f
+    - /ossutil cp -r dist oss://wechat-aliyun/${CI_PROJECT_NAME}/dist
+    - echo "项目预览为：https://wechat.aliyun.demonhh.com/${CI_PROJECT_NAME}/dist/ + 你的index.html所在路径"
+    - echo "例如我常规的单页应用预览地址为：https://wechat.aliyun.demonhh.com/${CI_PROJECT_NAME}/dist/spa/index.html"
+  tags:
+    - aliyun-1
